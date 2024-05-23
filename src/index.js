@@ -1,11 +1,7 @@
 import { fetchBreeds,fetchCatByBreed,fetchImgByRefId } from "./cat-api";
 import { refs } from "./refs";
 import Notiflix from 'notiflix';
-import SlimSelect from 'slim-select';
 
-new SlimSelect({
-  select: '#selectElement',
-})
 
 let linkImg = '';
 onShow();
