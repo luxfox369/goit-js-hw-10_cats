@@ -1,13 +1,17 @@
 import { fetchBreeds,fetchCatByBreed,fetchImgByRefId } from "./cat-api";
 import { refs } from "./refs";
 import Notiflix from 'notiflix';
+/*import SlimSelect from "slim-select";
 
+new SlimSelect({
+  select: '#selectElement',
+})*/
 
 let linkImg = '';
 onShow();
 
 fetchBreeds().then(data => {
-    console.log(data);  
+   // console.log(data);  
     Notiflix.Notify.success("Cat's breeds loaded for use...");
     refs.select.innerHTML = creatSelect(data);
     })
@@ -29,6 +33,7 @@ function onChange(event) {
             {
                 linkImg = item.url;
                 // console.log("linkImg ", linkImg);
+                //console.log(cat);
                 refs.info.innerHTML = creatInfo(cat);
                 Notiflix.Notify.success(`Keep info about ${cat.name}!`);
             onShow();
@@ -45,19 +50,20 @@ function onChange(event) {
         return arr.map(({ id, name }) => `<option value =${id} >${name}</option>`);
     }
 
-    function creatInfo({ name, description, origin, temperament, intelligence,life_span}) { 
+    function creatInfo({ name, description, origin, temperament, intelligence,life_span,dog_friendly,child_friendly,hypoallergenic,affection_level,energy_level}) { 
       //  console.log(`link on image :${IMG_URL}/${item.reference_image_id}`);
-        return(`<h2>${name}</h2>
-         <p><i>${description}</i></p>
-            <h3>Origin: <span><b>${origin}</b> </span></h3>
-           
-         <h3>Temperament:<span><i>${temperament}</i> </span></h3>
-            
-         <h3>Intelligence:<span><i>${intelligence}</i> </span></h3>
-         
-         <h3>life_span:<span><i>${life_span}</i> </span> </h3>
-           
-         <p><image src =${linkImg} alt = ${name} width="500px" height="500px"></p>` 
+        return (`<h3 class ="name">${name}</h3>
+        <p class="wrap"><image src =${linkImg} alt = ${name} "></p>
+        <h5>-~origin: <span>${origin} </span></h5>
+        <h5>-~energy-level:<span> ${energy_level}</span> </h5> 
+        <h5>-~temperament: <span>${temperament} </span></h5>
+        <h5>-~intelligence: <span>${intelligence}</span></h5>
+        <h5>-~affection_level:<span> ${affection_level}</span> </h5> 
+        <h5>-~life_span: <span>${life_span}</span> </h5> 
+        <h5>-~child_friendly:<span> ${child_friendly}</span></h5> 
+        <h5>-~dog_friendly:<span> ${dog_friendly}</span> </h5> 
+        <h5>-~hypoallergenic:<span>${hypoallergenic}</span></h5> 
+        <p class="description">~~${description}</p>`
         );
     
 }
