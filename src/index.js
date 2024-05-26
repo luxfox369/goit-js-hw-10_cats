@@ -69,14 +69,12 @@ function onChange(event) {
 }
 function onload() {
     refs.loader.hidden = false;
-    refs.select.hidden = true;
     refs.info.hidden = true;
     refs.error.hidden = true;
     
 }
 function onShow() {
-    refs.select.hidden = false;
-    refs.info.hidden = false;
     refs.loader.hidden = true;
+    refs.info.hidden = false;
     refs.error.hidden = true;
     }
